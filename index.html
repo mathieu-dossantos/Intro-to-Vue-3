@@ -11,14 +11,38 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
-      
+      <div class="cart"> Mon panier({{ panier }})</div>
       <div class="product-display">
         <div class="product-container">
           <div class="product-image">
             <!-- image goes here -->
+            <img :src=image :class="{'out-of-stock-img': !stock}">
           </div>
           <div class="product-info">
-            <h1>{{ product }}</h1>
+            <h1>{{ produit }} à vendre</h1>
+            <p>Description du produit : <br> {{ description }} </p>
+            <p>Couleur du produit : <br> {{ couleur }}</p>
+            <p>Page facebook du vendeur : <br> <a :href="website">Jeune Garde Montpellier</a></p>
+            <p v-if="stock">Disponible</p>
+            <p v-else>Rupture de stock</p>
+              <div class="compo">
+                <p v-if="details.length != 0"> Composition du produit : 
+                <ul>
+                  <li v-for="detail in details"> {{ detail }} </li>
+                </ul>
+                </p>
+                <p v-if="tailles.length != 0"> Tailles disponibles : <br> </p>
+                <ul>
+                  <li v-for="taille in tailles"> {{ taille }} </li>
+                </ul>
+              </div>
+            <p v-if="variantes.length != 0"> Existe aussi en : <br>
+              <ul>
+                <li v-for="variante in variantes"> {{ variante.couleur }} {{ variante.tailles }}</li>
+              </ul>
+            </p>
+            <button class="button" v-on:click="ajouterPanier">Ajouter au panier</button>
+            <button class="button" v-on:click="retirerPanier">Retirer du panier</button>
           </div>
         </div>
       </div>
