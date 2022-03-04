@@ -21,11 +21,9 @@
           </div>
           <div class="product-info">
             <h1>{{ title }}</h1>
-            <!-- solution -->
             <p>{{ sale }}</p>
-            <!-- solution -->
-            <p v-if="inStock">In Stock</p>
-            <p v-else>Out of Stock</p>
+            <p v-if="inStock">En Stock</p>
+            <p v-else>Rupture de Stock</p>
             <ul>
               <li v-for="detail in details">{{ detail }}</li>
             </ul>

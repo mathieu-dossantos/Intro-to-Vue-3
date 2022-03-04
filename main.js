@@ -2,17 +2,15 @@ const app = Vue.createApp({
     data() {
         return {
             cart:0,
-            product: 'Socks',
-            brand: 'Vue Mastery',
+            product: 'Chaussettes anti-flics',
+            brand: 'ACAB',
             selectedVariant: 0,
-            details: ['50% cotton', '30% wool', '20% polyester'],
+            details: ['50% molotov', '30% pavé', '20% fumigène'],
             variants: [
-              { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50 },
-              { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0 },
+              { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50, onSale: false },
+              { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0, onSale: true },
             ],
-            // solution
-            onSale: true
-            // solution
+            
         }
     },
     methods: {
@@ -25,7 +23,7 @@ const app = Vue.createApp({
     },
     computed: {
         title() {
-            return this.brand + ' ' + this.product
+            return this.brand + '\n' + this.product
         },
         image() {
             return this.variants[this.selectedVariant].image
@@ -35,8 +33,8 @@ const app = Vue.createApp({
         },
         // solution
         sale() {
-            if (this.onSale) {
-                return this.brand + ' ' + this.product + ' is on sale.'
+            if (this.variants[this.selectedVariant].onSale) {
+                return this.brand + ' ' + this.product + ' est en vente.'
             }
             return ''
         }
